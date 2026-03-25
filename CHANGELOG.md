@@ -277,6 +277,10 @@
 * [BUGFIX] Query-frontend: Fix max total query length limit (`-query-frontend.max-total-query-length`) not being enforced on instant queries with subqueries or range selectors. #14985
 * [BUGFIX] Compactor: Fix potential goroutine leak when compaction iteration exits early due to errors. #13420
 * [BUGFIX] Query-frontend: Fix bugs with matcher propagation for binary operations where it was not being properly applied within nested expressions and also wrongly propagating internal label matchers. #15110
+* [BUGFIX] MQE: Fix `info()` function not enriching series when inner series are missing one identifying label (instance/job) but matching info series exist. #14832
+* [BUGFIX] MQE: Fix `info()` function only retaining one matcher when multiple data label matchers target the same label name. #14832
+* [BUGFIX] MQE: Fix `info()` function silently overwriting conflicting labels from different info metrics instead of returning an error. #14832
+* [BUGFIX] MQE: Fix `info()` function incorrectly grouping labels from replaced info series at the same evaluation timestamp due to lookback. #14832
 
 ### Mixin
 
