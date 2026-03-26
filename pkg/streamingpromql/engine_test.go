@@ -3828,10 +3828,9 @@ func TestQueryStats(t *testing.T) {
 			},
 		},
 		"common subexpression elimination": {
-			expr:                        `sum(dense_series) + sum(dense_series)`,
-			isInstantQuery:              true,
-			expectedTotalSamples:        2,
-			expectedTotalSamplesWithMQE: 1,
+			expr:                 `sum(dense_series) + sum(dense_series)`,
+			isInstantQuery:       true,
+			expectedTotalSamples: 2,
 			expectedTotalSamplesPerStep: promstats.TotalSamplesPerStep{
 				600000: 2,
 			},
@@ -3841,10 +3840,9 @@ func TestQueryStats(t *testing.T) {
 			},
 		},
 		"common subexpression elimination inside subquery, instant query": {
-			expr:                        `sum_over_time((sum(dense_series))[5m:1m]) + sum_over_time((count(dense_series))[5m:1m])`,
-			isInstantQuery:              true,
-			expectedTotalSamples:        10,
-			expectedTotalSamplesWithMQE: 5,
+			expr:                 `sum_over_time((sum(dense_series))[5m:1m]) + sum_over_time((count(dense_series))[5m:1m])`,
+			isInstantQuery:       true,
+			expectedTotalSamples: 10,
 			expectedTotalSamplesPerStep: promstats.TotalSamplesPerStep{
 				600000: 10,
 			},
