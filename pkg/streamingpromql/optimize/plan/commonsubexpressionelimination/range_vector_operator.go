@@ -273,14 +273,14 @@ func (b *RangeVectorDuplicationBuffer) NextStepSamples(ctx context.Context, cons
 			b.lastNextSeriesCallIndex++
 		}
 
-		stepData, err := b.Inner.NextStepSamples(ctx)
-		if err != nil {
-			return nil, err
-		}
+	stepData, err := b.Inner.NextStepSamples(ctx)
+	if err != nil {
+		return nil, err
+	}
 
-		b.lastNextStepSamplesCallIndex = 0
+	b.lastNextStepSamplesCallIndex = stepIdx
 
-		return stepData, nil
+	return stepData, nil
 	}
 
 	// This series isn't present in the buffer, and other consumers might need it.
